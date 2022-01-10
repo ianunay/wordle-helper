@@ -15,11 +15,17 @@
       justify-content: flex-start;
       align-items: center;
     }
+    .hidden {
+      display: none;
+    }
   </style>
   <body>
-    <h1>Wordle Helper</h1>
-    <button id="refresh">Refresh</button>
-    <div class="content"></div>
+    <header>
+      <h1>Wordle Helper</h1>
+      <button id="refresh">Refresh</button>
+    </header>
+    <div id="empty-state" class="hidden"><p>Open <a href="https://www.powerlanguage.co.uk/wordle/" target="blank">wordle</a> to play</p></div>
+    <div id="suggestions" class="list"></div>
   </body>
   <script src="./script.js"></script>
 </html>

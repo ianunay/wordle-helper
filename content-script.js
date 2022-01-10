@@ -1,13 +1,8 @@
 chrome.runtime.onMessage.addListener(function (request, _, sendResponse) {
-  const wordleURL = "https://www.powerlanguage.co.uk/wordle/";
-  if (window.location.href !== wordleURL) {
-    sendResponse({
-      html: `<p>Open <a href=${wordleURL} target="blank">wordle</a> to play</p>`,
-    });
-  }
-  const filterInput = buildFilterInput();
-  if (request.msg === "getFilterInput")
+  if (request.msg === "getFilterInput") {
+    const filterInput = buildFilterInput();
     sendResponse({ result: filterWords(filterInput) });
+  }
 });
 
 function buildFilterInput() {

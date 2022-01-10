@@ -3,21 +3,32 @@
 })();
 
 function getSuggestions() {
-  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-    chrome.tabs.sendMessage(tabs[0].id, {msg: "getFilterInput"}, function(response) {
-      if (response.result) {
-        console.log(response);
-        renderResults(response.result);
+  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+    console.log(tabs);
+    chrome.tabs.sendMessage(
+      tabs[0].id,
+      { msg: "getFilterInput" },
+      function (response) {
+        if (response.result) {
+          renderResults(response.result);
+        }
       }
-    });
+    );
   });
 }
 
+function showEmptyState() {
+  document.querySelector("#empty-state").setAttribute("class", "");
+}
+
 function renderResults(results) {
-  const list = results.slice(0, 30).map(word => `<li>${word.toUpperCase()}</li>`).join("")
-  document.querySelector(".content").innerHTML = `<ul>${list}</ul>`
+  const list = results
+    .slice(0, 30)
+    .map(word => `<li>${word.toUpperCase()}</li>`)
+    .join("");
+  document.querySelector("#suggestions").innerHTML = `<ul>${list}</ul>`;
 }
 
 document.querySelector("#refresh").addEventListener("click", () => {
   getSuggestions();
-})
+});
