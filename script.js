@@ -28,7 +28,3 @@ function renderResults(results) {
     .join("");
   document.querySelector("#suggestions").innerHTML = `<ul>${list}</ul>`;
 }
-
-document.querySelector("#refresh").addEventListener("click", () => {
-  getSuggestions();
-});

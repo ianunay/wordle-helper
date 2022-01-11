@@ -1,7 +1,7 @@
 <html>
   <style>
     body {
-      background-color: #121213;
+      background-color: #3a3a3a;
       color: #d7dadc;
       height: 500px;
       width: 340px;
@@ -15,6 +15,34 @@
       justify-content: flex-start;
       align-items: center;
     }
+    header {
+      width: 100%;
+      display: flex;
+      position: fixed;
+      align-items: center;
+      flex-direction: column;
+      background: #d7dadc;
+      color: #538d4e;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+    h1 {
+      margin: 15px;
+    }
+    header p {
+      margin: 0 10px 10px 25px;
+    }
+    ul {
+      list-style: numeric;
+      padding: 0;
+      font-size: 30px;
+    }
+    li {
+      padding-bottom: 15px;
+    }
+    .list {
+      margin-top: 100px;
+    }
     .hidden {
       display: none;
     }
@@ -22,10 +50,19 @@
   <body>
     <header>
       <h1>Wordle Helper</h1>
-      <button id="refresh">Refresh</button>
+      <p>suggestions shown below are based on current state of the board</p>
     </header>
-    <div id="empty-state" class="hidden"><p>Open <a href="https://www.powerlanguage.co.uk/wordle/" target="blank">wordle</a> to play</p></div>
-    <div id="suggestions" class="list"></div>
+    <div id="suggestions" class="list">
+      <div id="empty-state" class="hidden">
+        <p>
+          Open
+          <a href="https://www.powerlanguage.co.uk/wordle/" target="blank">
+            wordle
+          </a>
+          to play
+        </p>
+      </div>
+    </div>
   </body>
   <script src="./script.js"></script>
 </html>
