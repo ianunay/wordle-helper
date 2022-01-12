@@ -1,3 +1,5 @@
+// content script that parses the DOM of the page and filters words
+
 chrome.runtime.onMessage.addListener(function (request, _, sendResponse) {
   if (request.msg === "getFilterInput") {
     const filterInput = buildFilterInput();

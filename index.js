@@ -1,50 +1,35 @@
+// Script to sort dictionary by calculating scores
+
 const fs = require("fs");
 const data = fs.readFileSync("./wordle-dict.txt", "utf-8").split(",");
 
-function filterWords({ includes, excludes, positions }) {
-  return data.filter(
-    word =>
-      excludes.every(char => !word.includes(char)) &&
-      includes.every(char => word.includes(char)) &&
-      positions.every(pos => {
-        if (pos.correct) {
-          return word[pos.index] === pos.char;
-        } else {
-          return word[pos.index] !== pos.char;
-        }
-      })
-  );
-}
+const scores = Array(5)
+  .fill(null)
+  .map(() => new Map());
+data.forEach(word => {
+  const letters = word.split("");
+  letters.forEach((letter, index) => {
+    if (scores[index].has(letter)) {
+      const val = scores[index].get(letter) + 1;
+      scores[index].set(letter, val);
+    } else {
+      scores[index].set(letter, 1);
+    }
+  });
+});
 
-// const filterInput = {
-//   excludes: ['f', 'o', 'c', 'a', 'l', 'd', 'i', 'g', 't', 's', 'v', 'h', 'm'],
-//   includes: ['e', 'r', 'y'],
-//   positions: [
-//     { index: 1, char: "e", correct: false },
-//     { index: 2, char: "r", correct: false },
-//     { index: 0, char: "r", correct: false },
-//     { index: 2, char: "y", correct: false },
-//     { index: 4, char: "e", correct: false }
-//   ]
-// };
+const scoreObjs = [];
+scores.forEach(rank => {
+  const sortedScores = new Map([...rank.entries()].sort((a, b) => b[1] - a[1]));
+  scoreObjs.push(Object.fromEntries(sortedScores));
+});
 
-const tmp = {
-  "includes": [
-      "e"
-  ],
-  "excludes": [
-      "s",
-      "l",
-      "p"
-  ],
-  "positions": [
-      {
-          "index": 2,
-          "letter": "e",
-          "correct": true
-      }
-  ]
-}
-const result = filterWords(tmp);
+const dictionaryWithScores = data.map(word => {
+  let score = 0;
+  word.split("").forEach((letter, index) => {
+    score += scoreObjs[index][letter];
+  });
+  return { word, score };
+});
 
-console.log(JSON.stringify(result));
+fs.writeFileSync("./wordle-dict.txt", dictionaryWithScores.sort((a,b) => b.score - a.score).map(e => e.word).join(","));

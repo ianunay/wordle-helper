@@ -26,12 +26,6 @@
       border-radius: 5px;
       font-weight: bold;
     }
-    h1 {
-      margin: 15px;
-    }
-    header p {
-      margin: 0 10px 10px 25px;
-    }
     ul {
       list-style: numeric;
       padding: 0;
@@ -40,23 +34,17 @@
     li {
       padding-bottom: 15px;
     }
-    .list {
-      margin-top: 100px;
-    }
-    .hidden {
-      display: none;
-    }
   </style>
   <body>
     <header>
-      <h1>Wordle Helper</h1>
-      <p>suggestions shown below are based on current state of the board</p>
+      <h1 style="margin: 15px;">Wordle Helper</h1>
+      <p style="margin: 0 10px 10px 25px;">suggestions shown below are based on current state of the board</p>
     </header>
-    <div id="suggestions" class="list">
-      <div id="empty-state" class="hidden">
-        <p>
+    <div id="suggestions" style="margin-top: 100px;">
+      <div id="empty-state">
+        <p style="margin-top: 25px;font-size: 24px;">
           Open
-          <a href="https://www.powerlanguage.co.uk/wordle/" target="blank">
+          <a style="color: #f8f8f8;" href="https://www.powerlanguage.co.uk/wordle/" target="blank">
             wordle
           </a>
           to play

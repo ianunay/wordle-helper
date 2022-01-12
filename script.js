@@ -1,3 +1,5 @@
+// script of extension popup
+
 (function main() {
   getSuggestions();
 })();
@@ -15,10 +17,6 @@ function getSuggestions() {
       }
     );
   });
-}
-
-function showEmptyState() {
-  document.querySelector("#empty-state").setAttribute("class", "");
 }
 
 function renderResults(results) {

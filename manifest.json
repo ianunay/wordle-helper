@@ -1,7 +1,7 @@
 {
   "name": "Wordle Helper",
-  "description": "A simple extension which provides suggestions in wordle",
-  "version": "0.1",
+  "description": "A simple extension which provides suggestions for the game Wordle",
+  "version": "1.0",
   "manifest_version": 3,
   "action": {
     "default_popup": "index.html",
